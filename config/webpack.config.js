@@ -7,8 +7,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const inProject = path.resolve.bind(path, project.dirBase);
 const inProjectSrc = (file) => inProject( project.dirSource, file);
 
-const extractSass = new ExtractTextPlugin({
-  filename: 'style.[contenthash].css',
+const extractStye = new ExtractTextPlugin({
+  filename: '[name][contenthash].css',
   allChunks: true
 });
 
@@ -27,32 +27,39 @@ var config = {
         use: {
           loader: 'babel-loader'
         }
-      },
-      {
-        test: /\.scss$/,
-        use: extractSass.extract({
+      }, {
+        test: /\.css$/,
+        use: extractStye.extract(['css-loader'])
+      }, {
+        test: /\.(sass|scss)$/,
+        use: extractStye.extract({
           use: [{
             loader: "css-loader"
           }, {
-            loader: "sass-loader",
-            options: {
-              includePaths: ["node_modules"]
-            }
+            loader: "sass-loader"
           }]
         })
+      }, {
+        test : /\.(png|jpg|gif)$/,
+        use  : {
+          loader: 'url-loader',
+          options : {
+            limit : 8192
+          }
+        }
       }
     ]
   },
   plugins: [
+    extractStye,
     new HtmlWebpackPlugin({
       template: inProjectSrc('index.html'),
       filename: 'index.html'
-    }),
-    extractSass
+    })
   ]
 }
 
-
+//url-loader for fonts and svgs
 ;[
   ['woff', 'application/font-woff'],
   ['woff2', 'application/font-woff2'],

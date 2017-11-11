@@ -1,6 +1,24 @@
-@import '~/bootstrap/dist/css/bootstrap.min.css';
-
 html, body {
-  background: #000;
+  height: 100%;
+  display: grid;
+}
+
+h1 {
+  font-size: 80px;
   color: #fff;
+  margin: auto;
+}
+
+.bg {
+    position: absolute;
+    background-image: url("assets/forest.jpg");
+    z-index: -1;
+    /* Full width/height */
+    height: 100%;
+    width: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }

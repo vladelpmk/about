@@ -1,3 +1,3 @@
-require('./style/index.scss');
+require('./style');
 
 console.log('Vladimri');
