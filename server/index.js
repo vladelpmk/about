@@ -1,14 +1,14 @@
-const webpack = require('webpack');
 const express = require('express');
-const webpackConfig = require('../config/webpack.config');
+const debug = require('debug')('app:server');
 
-const compiler = webpack(webpackConfig);
-compiler.run((err, stats) => {
-  console.log(stats);
-});
+//configuration files
+const project = require('../config/project.config');
 
+//compiler
+const compile = require('../bin/compile')();
+
+//start server
 var app = express();
-
-app.use(express.static('dist/'));
+app.use(express.static(project.dirDist));
 
 module.exports = app;
