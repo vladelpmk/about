@@ -17,7 +17,7 @@ const webpackCompiler = (webpackConfig) =>
 
       const jsonStats = stats.toJson();
       debug('Webpack compile completed.');
-      debug(stats.toString(project.compilerStats));
+      debug(stats.toString(project.compiler.compilerStats));
 
       if (jsonStats.errors.length > 0) {
         debug('Webpack compiler encountered errors.');

@@ -8,11 +8,13 @@ const config = {
 
   compiler: {
     compilerStats: {
-      children: false,
-      chunks:   false,
-      colors:   true
+      children :  false,
+      chunks   :  false,
+      colors   :  true,
+      modules  :  false
     },
-    failOnWarning: false
+    failOnWarning: false,
+    venors: ['react', 'react-dom']
   }
 
 }

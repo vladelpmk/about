@@ -1,4 +1,4 @@
-html, body {
+html, body .root {
   height: 100%;
   display: grid;
 }
@@ -10,8 +10,8 @@ h1 {
 }
 
 .bg {
+    background: #000;
     position: absolute;
-    background-image: url("assets/forest.jpg");
     z-index: -1;
     /* Full width/height */
     height: 100%;

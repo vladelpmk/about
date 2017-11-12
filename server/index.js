@@ -1,5 +1,4 @@
 const express = require('express');
-const debug = require('debug')('app:server');
 
 //configuration files
 const project = require('../config/project.config');

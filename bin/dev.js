@@ -1,4 +1,4 @@
-const server = require('../server');
+const server = require('../server/dev');
 const debug = require('debug')('app:server');
 
 //compiler

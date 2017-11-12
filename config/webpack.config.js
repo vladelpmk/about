@@ -1,5 +1,7 @@
 const path = require('path');
 const project = require('./project.config');
+const webpack = require('webpack');
+
 //webpack plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -14,15 +16,19 @@ const extractStye = new ExtractTextPlugin({
 
 var config = {
   context: project.dirBase,
-  entry: inProjectSrc('index.js'),
+  watch: true,
+  entry: {
+    app: inProjectSrc('index.js'),
+    vendor: project.compiler.venors
+  },
   output: {
     path: inProject(project.dirDist),
-    filename: "script.js"
+    filename: "[name][chunkhash].js"
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /(node_modules)/,
         use: {
           loader: 'babel-loader'
@@ -54,7 +60,12 @@ var config = {
     extractStye,
     new HtmlWebpackPlugin({
       template: inProjectSrc('index.html'),
+      chunks: ['vendor', 'app'],
       filename: 'index.html'
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      filename: 'vendor.bundle.js'
     })
   ]
 }
