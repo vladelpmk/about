@@ -1,24 +1,6 @@
-html, body .root {
-  height: 100%;
-  display: grid;
-}
+@import "bootstrap-vars";
+@import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
-h1 {
-  font-size: 80px;
-  color: #fff;
-  margin: auto;
-}
-
-.bg {
-    background: #000;
-    position: absolute;
-    z-index: -1;
-    /* Full width/height */
-    height: 100%;
-    width: 100%;
-
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+body {
+  padding-top: 70px;
 }
